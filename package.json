@@ -28,7 +28,6 @@
     }
   },
   "scripts": {
-    "commit": "cz",
     "lint": "eslint --ext .ts --fix .",
     "lint:report": "eslint -f json -o eslint-report.json",
     "start": "NODE_ENV=production node app.js",

@@ -4,6 +4,7 @@ const { logger } = require('./logger');
 const { morgan } = require('./morgan');
 const { jwt } = require('./jsonwebtoken');
 const transporter = require('./nodemailer');
+const constants = require('./constants');
 
 module.exports = {
   ApplicationError,
@@ -12,4 +13,5 @@ module.exports = {
   morgan,
   jwt,
   transporter,
+  constants,
 };

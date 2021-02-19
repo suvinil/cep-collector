@@ -1,3 +1,7 @@
+const { constants } = require('../utils');
+
+const { platforms } = constants;
+
 module.exports = (sequelize, DataTypes) => {
   const Address = sequelize.define(
     'Address',
@@ -34,6 +38,16 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'addresses',
       underscored: true,
       paranoid: true,
+      hooks: {
+        beforeSave: (address, options) => {
+          let platform;
+
+          platform = platforms.indexOf(address.get('platform'));
+          platform = platform !== -1 ? platform + 1 : 1;
+
+          address.set('platform', platform);
+        },
+      },
     },
   );
 

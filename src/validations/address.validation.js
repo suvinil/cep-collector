@@ -1,4 +1,5 @@
 const yup = require('yup');
+const { constants } = require('../utils');
 
 const get = {
   params: yup.object().shape({
@@ -12,13 +13,7 @@ const create = {
       .string()
       .matches(/^\d{5}-\d{3}$/, 'Invalid zipCode (00000-000)')
       .required(),
-    platform: yup
-      .string()
-      .matches(
-        /(loja|pintor|institucional).[a-zA-Z]+.com/g,
-        '(institucional.suvinil.com | loja.suvinil.com | pintor.suvinil.com)',
-      )
-      .required(),
+    platform: yup.string().oneOf(constants.platforms).required(),
   }),
 };
 

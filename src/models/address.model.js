@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
         allowNull: false,
       },
-      zip_code: {
+      zipCode: {
         type: DataTypes.STRING,
         allowNull: false,
       },

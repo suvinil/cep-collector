@@ -1,3 +1,7 @@
+const { constants } = require('../utils');
+
+const { platforms } = constants;
+
 module.exports = (sequelize, DataTypes) => {
   const Address = sequelize.define(
     'Address',
@@ -37,19 +41,9 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeSave: (address, options) => {
           let platform;
-          switch (address.get('platform')) {
-            case 'institucional':
-              platform = 1;
-              break;
-            case 'loja':
-              platform = 2;
-              break;
-            case 'encontre-seu-pintor':
-              platform = 3;
-              break;
-            default:
-              platform = 1;
-          }
+
+          platform = platforms.indexOf(address.get('platform'));
+          platform = platform !== -1 ? platform + 1 : 1;
 
           address.set('platform', platform);
         },

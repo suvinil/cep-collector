@@ -7,7 +7,7 @@ module.exports = {
         autoIncrement: true,
         allowNull: false,
       },
-      cep: {
+      zip_code: {
         type: Sequelize.STRING,
         allowNull: false,
       },

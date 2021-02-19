@@ -3,6 +3,14 @@ const { catchAsync } = require('../utils');
 const { addressService } = require('../services');
 
 module.exports = {
+  list: catchAsync(async (req, res) => {
+    const { query } = req;
+
+    const response = await addressService.list(query);
+
+    return res.status(StatusCodes.CREATED).json(response);
+  }),
+
   create: catchAsync(async (req, res) => {
     const { body } = req;
 

@@ -7,6 +7,14 @@ const get = {
   }),
 };
 
+const list = {
+  query: yup.object().shape({
+    dateStart: yup.date(),
+    dateEnd: yup.date(),
+    order: yup.string().oneOf(constants.order),
+  }),
+};
+
 const create = {
   body: yup.object().shape({
     zipCode: yup
@@ -19,5 +27,6 @@ const create = {
 
 module.exports.address = {
   get,
+  list,
   create,
 };

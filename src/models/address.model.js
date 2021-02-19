@@ -34,6 +34,45 @@ module.exports = (sequelize, DataTypes) => {
       tableName: 'addresses',
       underscored: true,
       paranoid: true,
+      hooks: {
+        beforeSave: (address, options) => {
+          let platform;
+          switch (address.get('platform')) {
+            case 'institucional.suvinil.com':
+              platform = 1;
+              break;
+            case 'loja.suvinil.com':
+              platform = 2;
+              break;
+            case 'pintor.suvinil.com':
+              platform = 3;
+              break;
+            default:
+              platform = 1;
+          }
+
+          address.set('platform', platform);
+        },
+
+        beforeUpdate: (address, options) => {
+          let platform;
+          switch (address.get('platform')) {
+            case 'institucional.suvinil.com':
+              platform = 1;
+              break;
+            case 'loja.suvinil.com':
+              platform = 2;
+              break;
+            case 'pintor.suvinil.com':
+              platform = 3;
+              break;
+            default:
+              platform = 1;
+          }
+
+          address.set('platform', platform);
+        },
+      },
     },
   );
 

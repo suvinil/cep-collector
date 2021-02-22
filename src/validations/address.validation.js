@@ -9,7 +9,7 @@ const get = {
 
 const list = {
   query: yup.object().shape({
-    dateStart: yup.date().transform(dateValidate).default(new Date(2000, 1, 1)),
+    dateStart: yup.date().transform(dateValidate).default(new Date(0)),
     dateEnd: yup.date().transform(dateValidate).default(new Date()),
     order: yup.string().oneOf(constants.order),
   }),

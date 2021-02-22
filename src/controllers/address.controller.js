@@ -8,7 +8,7 @@ module.exports = {
 
     const response = await addressService.list(query);
 
-    return res.status(StatusCodes.CREATED).json(response);
+    return res.status(StatusCodes.OK).json(response);
   }),
 
   create: catchAsync(async (req, res) => {

@@ -1,9 +1,17 @@
 const yup = require('yup');
-const { constants } = require('../utils');
+const { constants, dateValidate } = require('../utils');
 
 const get = {
   params: yup.object().shape({
     id: yup.number().integer(),
+  }),
+};
+
+const list = {
+  query: yup.object().shape({
+    dateStart: yup.date().transform(dateValidate).default(new Date(0)),
+    dateEnd: yup.date().transform(dateValidate).default(new Date()),
+    order: yup.string().oneOf(constants.order),
   }),
 };
 
@@ -19,5 +27,6 @@ const create = {
 
 module.exports.address = {
   get,
+  list,
   create,
 };

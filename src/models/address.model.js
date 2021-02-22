@@ -1,3 +1,4 @@
+const { format } = require('date-fns');
 const { constants } = require('../utils');
 
 const { platforms } = constants;
@@ -50,6 +51,18 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
   );
+
+  Address.prototype.toJSON = function () {
+    const address = { ...this.get() };
+
+    return {
+      id: address.id,
+      platformId: address.platform,
+      platformDescription: constants.platforms[address.platform - 1],
+      zipCode: address.zipCode,
+      createdAt: format(address.createdAt, 'yyyy-MM-dd'),
+    };
+  };
 
   return Address;
 };

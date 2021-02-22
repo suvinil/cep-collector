@@ -2,10 +2,9 @@ const { fn, col } = require('sequelize');
 const { Address } = require('../models');
 
 module.exports = {
-  findAll: (query = '', order = 'ASC') =>
+  findAll: (query = '', order) =>
     Address.findAll({
       where: query,
-      attributes: ['id', 'platform', 'zipCode', 'createdAt'],
       order: [['createdAt', order]],
     }),
   findMaxMinDate: (type = '', column = 'createdAt') =>

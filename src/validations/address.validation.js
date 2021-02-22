@@ -1,5 +1,5 @@
 const yup = require('yup');
-const { constants } = require('../utils');
+const { constants, dateValidate } = require('../utils');
 
 const get = {
   params: yup.object().shape({
@@ -9,8 +9,8 @@ const get = {
 
 const list = {
   query: yup.object().shape({
-    dateStart: yup.date(),
-    dateEnd: yup.date(),
+    dateStart: yup.date().transform(dateValidate).default(new Date(2000, 1, 1)),
+    dateEnd: yup.date().transform(dateValidate).default(new Date()),
     order: yup.string().oneOf(constants.order),
   }),
 };
